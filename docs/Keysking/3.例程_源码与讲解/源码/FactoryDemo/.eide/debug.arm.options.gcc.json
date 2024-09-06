@@ -1,0 +1,26 @@
+{
+    "version": 5,
+    "beforeBuildTasks": [],
+    "afterBuildTasks": [],
+    "global": {
+        "$float-abi-type": "softfp",
+        "output-debug-info": "enable"
+    },
+    "c/cpp-compiler": {
+        "language-c": "c11",
+        "language-cpp": "c++11",
+        "optimization": "level-size",
+        "warnings": "all-warnings",
+        "one-elf-section-per-function": true,
+        "one-elf-section-per-data": true,
+        "C_FLAGS": "-mcpu=cortex-m3 -std=gnu11 -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3 -Os -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity --specs=nano.specs -mfloat-abi=soft -mthumb"
+    },
+    "asm-compiler": {
+        "ASM_FLAGS": "-mcpu=cortex-m3 -c -x assembler-with-cpp --specs=nano.specs -mfloat-abi=soft -mthumb"
+    },
+    "linker": {
+        "output-format": "elf",
+        "remove-unused-input-sections": true,
+        "LD_FLAGS": "-TSTM32F103C8TX_FLASH.ld -mcpu=cortex-m3 --specs=nosys.specs -Wl,-Map=\"${BuildArtifactFileBaseName}.map\" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group"
+    }
+}
